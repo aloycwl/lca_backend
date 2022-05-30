@@ -12,8 +12,9 @@ contract ERC721AC_Luna is ERC721AC{
     function MINT(string[] memory r)external{unchecked{
         require(r.length<11);
         for(uint i=0;i<r.length;i++){
-            (_owners[count]=msg.sender,_balances[msg.sender]+=1,_uri[count]=r[i],count++);
+            (_owners[count]=msg.sender,_balances[msg.sender]+=1,_uri[count]=r[i]);
             emit Transfer(address(0),msg.sender,count);
+            count++;
         }
     }}
 }
