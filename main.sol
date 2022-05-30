@@ -2,7 +2,7 @@
 pragma solidity>0.8.0;//SPDX-License-Identifier:None
 import"https://github.com/aloycwl/ERC_AC/blob/main/ERC721AC/ERC721AC.sol";
 contract ERC721AC_Luna is ERC721AC{
-    uint public count;
+    uint public count=1;
     mapping(uint=>string)private _uri;
     function name()external pure override returns(string memory){return"Luna Commemorative Art";}
     function symbol()external pure override returns(string memory){return"LCA";}
