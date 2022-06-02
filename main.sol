@@ -13,6 +13,7 @@ contract ERC721_LSG is ERC721{
     function MINT(string[] memory r)external{unchecked{
         require(r.length<6);
         require(count<3334);
+        require(balanceOf(msg.sender)+r.length<5);
         for(uint i=0;i<r.length;i++){
             count++;
             if(bytes(_uri[count]).length<1)_uri[count]=r[i];
