@@ -8,7 +8,7 @@ contract ERC721_LSG is ERC721{
         for(uint i=0;i<uri.length;i++)_uri[num[i]]=uri[i];
     }
     function tokenURI(uint a)public view override returns(string memory){
-        return string(abi.encodePacked("ipfs://",_uri[a]));
+        return string(abi.encodePacked("ipfs://",_uri[a],".json"));
     }
     function MINT(string[] memory r)external{unchecked{
         require(r.length<6);
