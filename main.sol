@@ -20,6 +20,7 @@ contract ERC721_LSG is ERC721AC{
         require(r.length<6);
         require(count<3334);
         require(_balances[msg.sender]+r.length<6);
+        require(block.timestamp>1654563600);
         for(uint i=0;i<r.length;i++){
             count++;
             if(bytes(_uri[count]).length<1)_uri[count]=r[i];
@@ -28,4 +29,7 @@ contract ERC721_LSG is ERC721AC{
             emit Transfer(address(0),msg.sender,count);
         }
     }}
+    function test()external view returns(uint){
+        return block.timestamp;
+    }
 }
