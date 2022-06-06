@@ -29,7 +29,4 @@ contract ERC721_LSG is ERC721AC{
             emit Transfer(address(0),msg.sender,count);
         }
     }}
-    function test()external view returns(uint){
-        return block.timestamp;
-    }
 }
