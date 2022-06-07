@@ -32,10 +32,10 @@ contract LSG is IERC721,IERC721Metadata{
     function supportsInterface(bytes4 a)external pure returns(bool){
         return a==type(IERC721).interfaceId||a==type(IERC721Metadata).interfaceId;
     }
-    function balanceOf(address a)external view override virtual returns(uint){
+    function balanceOf(address a)external view override returns(uint){
         return _balances[a];
     }
-    function ownerOf(uint a)public view override virtual returns(address){
+    function ownerOf(uint a)public view override returns(address){
         return _owners[a]; 
     }
     function owner()external view returns(address){
@@ -62,7 +62,7 @@ contract LSG is IERC721,IERC721Metadata{
     function isApprovedForAll(address a,address b)public view override returns(bool){
         return _operatorApprovals[a][b];
     }
-    function transferFrom(address a,address b,uint c)public virtual override{unchecked{
+    function transferFrom(address a,address b,uint c)public override{unchecked{
         require(a==ownerOf(c)||getApproved(c)==a||isApprovedForAll(ownerOf(c),a));
         (_tokenApprovals[c]=address(0),_balances[a]-=1,_balances[b]+=1,_owners[c]=b);
         emit Approval(ownerOf(c),b,c);
@@ -87,10 +87,11 @@ contract LSG is IERC721,IERC721Metadata{
         return string(abi.encodePacked("ipfs://",b));
     }}
     function MINT(uint n)external{unchecked{
-        require(_balances[msg.sender]+n<6);
+        require(n<11);
         require(count<3334);
+        _balances[msg.sender]+=n;
         for(uint i=0;i<n;i++){
-            (count++,_balances[msg.sender]+= 1,_owners[count]=msg.sender);
+            (count++,_owners[count]=msg.sender);
             emit Transfer(address(0),msg.sender,count);
         }
     }}
