@@ -22,8 +22,8 @@ interface IERC721Metadata{
 contract LSG is IERC721,IERC721Metadata{
     uint public count;
     address private _owner;
-    mapping(uint=>address)private _owners;
     mapping(address=>uint)private _balances;
+    mapping(uint=>address)private _owners;
     mapping(uint=>address)private _tokenApprovals;
     mapping(address=>mapping(address=>bool))private _operatorApprovals;
     constructor(){
