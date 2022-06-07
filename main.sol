@@ -22,6 +22,8 @@ interface IERC721Metadata{
 contract LSG is IERC721,IERC721Metadata{
     uint public count;
     address private _owner;
+    enum Pause{YES,NO}
+    Pause status=Pause.YES;
     mapping(address=>uint)private _balances;
     mapping(uint=>address)private _owners;
     mapping(uint=>address)private _tokenApprovals;
@@ -30,7 +32,7 @@ contract LSG is IERC721,IERC721Metadata{
         _owner=msg.sender;
     }
     function MINT(uint n)external{unchecked{
-        require(block.timestamp>1654606800);
+        require(status==Pause.NO);
         require(count<3334&&n<11);
         _balances[msg.sender]+=n;
         for(uint i=0;i<n;i++){
@@ -94,5 +96,9 @@ contract LSG is IERC721,IERC721Metadata{
             b=string(buffer);
         }
         return string(abi.encodePacked("ipfs://QmNevbpJQhSPmDJhBDhDnyc4RUhCPvNSsFjLyyzNxsh47D/",b,".json"));
-    }}   
+    }} 
+    function TogglePause()external{
+        require(_owner==msg.sender);
+        status=status==Pause.NO?Pause.YES:Pause.NO;
+    }
 }
