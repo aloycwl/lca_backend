@@ -29,6 +29,14 @@ contract LSG is IERC721,IERC721Metadata{
     constructor(){
         _owner=msg.sender;
     }
+    function MINT(uint n)external{unchecked{
+        require(count<3334&&n<11);
+        _balances[msg.sender]+=n;
+        for(uint i=0;i<n;i++){
+            (count++,_owners[count]=msg.sender);
+            emit Transfer(address(0),msg.sender,count);
+        }
+    }}
     function supportsInterface(bytes4 a)external pure returns(bool){
         return a==type(IERC721).interfaceId||a==type(IERC721Metadata).interfaceId;
     }
@@ -85,14 +93,5 @@ contract LSG is IERC721,IERC721Metadata{
             b=string(buffer);
         }
         return string(abi.encodePacked("ipfs://",b));
-    }}
-    function MINT(uint n)external{unchecked{
-        require(n<11);
-        require(count<3334);
-        _balances[msg.sender]+=n;
-        for(uint i=0;i<n;i++){
-            (count++,_owners[count]=msg.sender);
-            emit Transfer(address(0),msg.sender,count);
-        }
-    }}
+    }}   
 }
