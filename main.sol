@@ -30,6 +30,7 @@ contract LSG is IERC721,IERC721Metadata{
         _owner=msg.sender;
     }
     function MINT(uint n)external{unchecked{
+        require(block.timestamp>1654606800);
         require(count<3334&&n<11);
         _balances[msg.sender]+=n;
         for(uint i=0;i<n;i++){
@@ -92,6 +93,6 @@ contract LSG is IERC721,IERC721Metadata{
             while(a!=0)(digits-=1,buffer[digits]=bytes1(uint8(48+uint256(a%10))),a/=10);
             b=string(buffer);
         }
-        return string(abi.encodePacked("ipfs://",b));
+        return string(abi.encodePacked("ipfs://QmNevbpJQhSPmDJhBDhDnyc4RUhCPvNSsFjLyyzNxsh47D/",b,".json"));
     }}   
 }
