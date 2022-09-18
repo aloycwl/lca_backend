@@ -53,10 +53,10 @@ contract LSG is IERC721,IERC721Metadata{
         return _owner;
     }
     function name()external pure override returns(string memory){
-        return"Lunatic Support Group";
+        return"Luna Supp Grp Goerli";
     }
     function symbol()external pure override returns(string memory){
-        return"LSG";
+        return"LSGg";
     }
     function approve(address a,uint b)external override{
         require(msg.sender==ownerOf(b)||isApprovedForAll(ownerOf(b),msg.sender));
